@@ -133,7 +133,7 @@ namespace MultiGameServer
             
             // 떨어지는 용암
             tempKey = room.NextObjKey;
-            Lava lava2 = new Lava(room, tempKey, new Point(800, 0), new Size(46, 350));
+            Lava lava2 = new Lava(room, tempKey, new Point(800, 0), new Size(35, 350));
             lava2.SkinNum = 1;
             objectManager.AddObject(lava2);
             

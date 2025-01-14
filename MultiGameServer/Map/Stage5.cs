@@ -102,12 +102,12 @@ namespace MultiGameServer
 
             // 왼쪽 계단
             tempKey = room.NextObjKey;
-            Floor Floor15 = new Floor(room, tempKey, new Point(0, 240), new Size(55, 280));
+            Floor Floor15 = new Floor(room, tempKey, new Point(0, 240), new Size(56, 280));
             Floor15.SkinNum = 1;
             objectManager.AddObject(Floor15);
 
             tempKey = room.NextObjKey;
-            Floor Floor16 = new Floor(room, tempKey, new Point(55, 280), new Size(55, 240));
+            Floor Floor16 = new Floor(room, tempKey, new Point(56, 280), new Size(54, 240));
             Floor16.SkinNum = 1;
             objectManager.AddObject(Floor16);
 

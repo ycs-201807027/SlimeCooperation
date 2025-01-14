@@ -63,7 +63,7 @@ namespace MultiGame
                 try
                 {
                     // 서버에 연결 ( 서버IP, 포트 )
-                    client.Connect("119.196.90.61", 8898);
+                    client.Connect("127.0.0.1", 8898);
                 }
                 catch
                 {

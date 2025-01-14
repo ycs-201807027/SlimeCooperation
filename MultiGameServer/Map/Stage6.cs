@@ -131,7 +131,7 @@ namespace MultiGameServer
             TimerBoard timerBoard = new TimerBoard(room, tempKey, new Point(520, 0), new Size(400, 100),3);
             timerBoard.StartTime = 30000;
             timerBoard.MinTime = 0;
-            timerBoard.MaxTime = 1000;
+            timerBoard.MaxTime = 800;
             timerBoard.SetTimerNotMatchAction(delegate () { room.AllDie(); });
             timerBoard.SetTimerMatchAction(delegate ()
             {
