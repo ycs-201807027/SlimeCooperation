@@ -42,34 +42,41 @@ namespace MultiGameModule
                 return false;
             }
 
-            // 프로토콜 가져옴
-            _protocol = NextByte();
-
-            // 프로코톨이 0이면 종료
-            if (_protocol == 0) return false;
-
-            // 만약 메시지 사이즈를 가져올 수 없다면 다음에 처리하기 위해 저장
-            if (nextIndex > _message.Length - 4)
+            try
             {
-                _remainMessage = new byte[_message.Length - nextIndex + 1];
-                Array.Copy(_message, nextIndex - 1, _remainMessage, 0, _message.Length - nextIndex + 1);
+                // 프로토콜 가져옴
+                _protocol = NextByte();
+
+                // 프로코톨이 0이면 종료
+                if (_protocol == 0) return false;
+
+                // 만약 메시지 사이즈를 가져올 수 없다면 다음에 처리하기 위해 저장
+                if (nextIndex > _message.Length - 4)
+                {
+                    _remainMessage = new byte[_message.Length - nextIndex + 1];
+                    Array.Copy(_message, nextIndex - 1, _remainMessage, 0, _message.Length - nextIndex + 1);
+                    return false;
+                }
+
+                // 메시지 사이즈 가져옴
+                _messageSize = NextInt();
+                lastIndex += MessageSize;
+
+                // 현재 읽어야 하는 메시지가 메시지 배열 사이즈를 넘어간다면 종료
+                if (lastIndex > _message.Length)
+                {
+                    _remainMessage = new byte[_message.Length - nextIndex + 5];
+                    Array.Copy(_message, nextIndex - 5, _remainMessage, 0, _message.Length - nextIndex + 5);
+                    return false;
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                _remainMessage = null;
                 return false;
             }
-
-            // 메시지 사이즈 가져옴
-            _messageSize = NextInt();
-            lastIndex += MessageSize;
-
-            // 현재 읽어야 하는 메시지가 메시지 배열 사이즈를 넘어간다면 종료
-            if (lastIndex > _message.Length)
-            {
-                _remainMessage = new byte[_message.Length - nextIndex + 5];
-                Array.Copy(_message, nextIndex - 5, _remainMessage, 0, _message.Length - nextIndex + 5);
-                return false;
-            }
-
-
-            return true;
         }
 
         public int NextInt()
